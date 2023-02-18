@@ -1,3 +1,13 @@
 <script setup></script>
 
-<template>Hello</template>
+<template>
+  <v-card>
+    <v-layout>
+      <v-navigation-drawer permanent>
+        <v-icon icon="mdi-home"></v-icon>
+        <v-icon class="fa-solid fa-house"></v-icon>
+        <v-list-item title="Home" nav />
+      </v-navigation-drawer>
+    </v-layout>
+  </v-card>
+</template>
