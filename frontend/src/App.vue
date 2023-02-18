@@ -1,13 +1,8 @@
-<script setup></script>
+<script setup>
+import Sidebar from "@/layouts/Sidebar.vue";
+</script>
 
 <template>
-  <v-card>
-    <v-layout>
-      <v-navigation-drawer permanent>
-        <v-icon icon="mdi-home"></v-icon>
-        <v-icon class="fa-solid fa-house"></v-icon>
-        <v-list-item title="Home" nav />
-      </v-navigation-drawer>
-    </v-layout>
-  </v-card>
+  <Sidebar />
+  <router-view />
 </template>
