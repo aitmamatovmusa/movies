@@ -1,12 +1,12 @@
-<script setup></script>
+<script setup>
+import { paths } from "@/router";
+</script>
 <template>
-  <v-card>
-    <v-layout>
-      <v-navigation-drawer permanent>
-        <v-icon icon="mdi-home"></v-icon>
+  <v-navigation-drawer permanent>
+    <v-list-item title="Home" :to="paths.home" link nav>
+      <template v-slot:prepend>
         <v-icon class="fa-solid fa-house"></v-icon>
-        <v-list-item title="Home" link nav />
-      </v-navigation-drawer>
-    </v-layout>
-  </v-card>
+      </template>
+    </v-list-item>
+  </v-navigation-drawer>
 </template>
