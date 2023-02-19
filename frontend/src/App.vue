@@ -18,6 +18,7 @@ import Sidebar from "@/layouts/Sidebar.vue";
 <style scoped>
 .main {
   height: 100vh;
+  overflow-y: auto;
 }
 .wrapper {
   padding: 10px;
