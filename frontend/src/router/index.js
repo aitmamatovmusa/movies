@@ -5,10 +5,7 @@ export const paths = {
   home: "/",
 };
 
-const routes = [
-  { path: paths.home, component: Home },
-  // { path: "/about", component: About },
-];
+const routes = [{ path: paths.home, component: Home }];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
