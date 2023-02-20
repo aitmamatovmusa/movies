@@ -1,23 +1,24 @@
 <script setup>
 import { httpGet } from "@/services/axios";
-import { onMounted, computed, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const mediaList = ref([]);
 const page = ref(1);
-const PER_PAGE = 20;
 
-const slicedMediaList = computed(() => {
-  const start = (page.value - 1) * PER_PAGE;
-  const end = start + PER_PAGE;
-  return mediaList.value.slice(start, end);
-});
-
-const loadMore = () => {
+async function loadMore() {
   page.value++;
-};
+  const results = await getMediaList();
+  mediaList.value = [...mediaList.value, ...results];
+  console.log(mediaList.value);
+}
+
+async function getMediaList() {
+  const { results } = await httpGet("top_rated", `&page=${page.value}`);
+  return results;
+}
 
 onMounted(async () => {
-  const { results } = await httpGet("top_rated", `&page=${page.value}`);
+  const results = await getMediaList();
   mediaList.value = results;
 });
 </script>
@@ -25,7 +26,14 @@ onMounted(async () => {
 <template>
   <h2 class="mb-3">Top Movies</h2>
   <v-row>
-    <v-col v-for="media in slicedMediaList" :key="media.image" cols="2">
+    <v-col
+      v-for="media in mediaList"
+      :key="media.poster_path"
+      cols="12"
+      lg="3"
+      sm="4"
+      xs="8"
+    >
       <v-img
         class="rounded-lg"
         :src="`https://image.tmdb.org/t/p/w185${media.poster_path}`"
