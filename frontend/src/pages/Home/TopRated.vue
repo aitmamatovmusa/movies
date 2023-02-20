@@ -9,7 +9,6 @@ async function loadMore() {
   page.value++;
   const results = await getMediaList();
   mediaList.value = [...mediaList.value, ...results];
-  console.log(mediaList.value);
 }
 
 async function getMediaList() {
@@ -24,7 +23,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h2 class="mb-3">Top Movies</h2>
+  <h2 class="mb-3">Top Rated</h2>
   <v-row>
     <v-col
       v-for="media in mediaList"
@@ -44,7 +43,7 @@ onMounted(async () => {
       />
     </v-col>
   </v-row>
-  <div class="text-center">
+  <div v-if="mediaList.length" class="text-center">
     <v-btn @click="loadMore" class="mt-5" variant="tonal">Load more</v-btn>
   </div>
 </template>
