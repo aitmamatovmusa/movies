@@ -1,9 +1,9 @@
 import axios from "axios";
+import { BASE_URL } from "@/config";
 
 const httpGet = async (title, query = "") => {
   const { data } = await axios.get(
-    `https://api.themoviedb.org/3/${title}?api_key=${import.meta.env.VITE_API_KEY
-    }${query}`
+    `${BASE_URL}${title}?api_key=${import.meta.env.VITE_API_KEY}${query}`
   );
   return data;
 };
