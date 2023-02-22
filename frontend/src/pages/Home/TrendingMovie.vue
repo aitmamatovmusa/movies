@@ -5,8 +5,7 @@ import { httpGet } from "@/services/axios";
 const slides = ref([]);
 
 async function getTrendingSlides() {
-  // trending/movie/week
-  const { results } = await httpGet("top_rated");
+  const { results } = await httpGet("trending/movie/week");
   return results;
 }
 
@@ -25,7 +24,7 @@ onMounted(async () => {
 <template>
   <h2 class="mb-3">Trending Movie</h2>
 
-  <v-carousel hide-delimiters height="400" show-arrows="hover">
+  <v-carousel class="mb-5" hide-delimiters height="400" show-arrows="hover">
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-card
         class="slide-card rounded-lg"
@@ -45,7 +44,8 @@ onMounted(async () => {
               <li>{{ slide.release_date }}</li>
               <li>{{ slide.vote_average }}</li>
             </ul>
-            <p class="card-overview-text">{{ slide.overview }}</p>
+            <p class="card-overview-text mb-2">{{ slide.overview }}</p>
+            <v-btn variant="outlined" class="card-detail-btn">Open</v-btn>
           </div>
         </div>
       </v-card>
@@ -73,7 +73,7 @@ onMounted(async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.4;
+  opacity: 0.6;
   background-color: #000;
 }
 .card-poster {
@@ -81,7 +81,7 @@ onMounted(async () => {
   max-width: 150px;
 }
 .card-detail {
-  margin-top: 30px;
+  margin-top: 10px;
   position: relative;
   z-index: 3;
 }
@@ -102,5 +102,13 @@ onMounted(async () => {
 }
 .card-slide-list li:last-child::after {
   display: none;
+}
+.card-detail-btn {
+  text-transform: none;
+  font-size: 12px;
+  padding: 8px 15px;
+  height: auto;
+  width: auto;
+  border-radius: 15px;
 }
 </style>

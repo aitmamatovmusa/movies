@@ -12,7 +12,7 @@ async function loadMore() {
 }
 
 async function getMediaList() {
-  const { results } = await httpGet("top_rated", `&page=${page.value}`);
+  const { results } = await httpGet("movie/top_rated", `&page=${page.value}`);
   return results;
 }
 
