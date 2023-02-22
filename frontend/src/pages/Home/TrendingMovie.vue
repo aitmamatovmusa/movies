@@ -25,31 +25,40 @@ onMounted(async () => {
   <h2 class="mb-3">Trending Movie</h2>
 
   <v-carousel class="mb-5" hide-delimiters height="400" show-arrows="hover">
-    <v-carousel-item v-for="(slide, i) in slides" :key="i">
-      <v-card
-        class="slide-card rounded-lg"
-        height="100%"
-        :image="`https://image.tmdb.org/t/p/original${slide.backdrop_path}`"
-      >
-        <div class="card-wrapper">
-          <v-img
-            class="card-poster"
-            :src="`https://image.tmdb.org/t/p/w185${slide.poster_path}`"
-            height="200px"
-            width="150px"
-          />
-          <div class="card-detail">
-            <h4 class="mb-2">{{ slide.title }}</h4>
-            <ul class="card-slide-list mb-2">
-              <li>{{ slide.release_date }}</li>
-              <li>{{ slide.vote_average }}</li>
-            </ul>
-            <p class="card-overview-text mb-2">{{ slide.overview }}</p>
-            <v-btn variant="outlined" class="card-detail-btn">Open</v-btn>
+    <template v-if="slides.length">
+      <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <v-card
+          class="slide-card rounded-lg"
+          height="100%"
+          :image="`https://image.tmdb.org/t/p/original${slide.backdrop_path}`"
+        >
+          <div class="card-wrapper">
+            <v-img
+              class="card-poster"
+              :src="`https://image.tmdb.org/t/p/w185${slide.poster_path}`"
+              height="200px"
+              width="150px"
+            />
+            <div class="card-detail">
+              <h4 class="mb-2">{{ slide.title }}</h4>
+              <ul class="card-slide-list mb-2">
+                <li>{{ slide.release_date }}</li>
+                <li>{{ slide.vote_average }}</li>
+              </ul>
+              <p class="card-overview-text mb-2">{{ slide.overview }}</p>
+              <v-btn
+                :to="`movie/${slide?.id}`"
+                variant="outlined"
+                class="card-detail-btn"
+                tag="a"
+                target="_blank"
+                >Open</v-btn
+              >
+            </div>
           </div>
-        </div>
-      </v-card>
-    </v-carousel-item>
+        </v-card>
+      </v-carousel-item>
+    </template>
   </v-carousel>
 </template>
 
