@@ -1,8 +1,26 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const search = ref();
+const router = useRouter();
+
+function searchValue() {
+  if (search.value) {
+    router.push(`search?value=${search.value}`);
+  }
+}
+</script>
 
 <template>
   <div class="search">
-    <v-text-field placeholder="Search" density="compact" class="search-field">
+    <v-text-field
+      v-model="search"
+      placeholder="Search"
+      density="compact"
+      class="search-field"
+      @keyup.enter="searchValue"
+    >
       <template v-slot:prepend>
         <v-icon class="search-icon fa-solid fa-magnifying-glass"
       /></template>
