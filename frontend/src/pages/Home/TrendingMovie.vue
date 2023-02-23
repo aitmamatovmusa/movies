@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { httpGet } from "@/services/axios";
+import { getOnlyYear } from "@/helpers";
 
 const slides = ref([]);
 
@@ -15,7 +16,7 @@ onMounted(async () => {
   slides.value = results.map((result) => {
     return {
       ...result,
-      release_date: result.release_date.substring(0, 4),
+      release_date: getOnlyYear(result.release_date),
     };
   });
 });

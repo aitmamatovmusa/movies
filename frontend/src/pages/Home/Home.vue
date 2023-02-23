@@ -1,5 +1,5 @@
 <script setup>
-import TopRated from "@/pages/Home/Toprated.vue";
+import TopRated from "@/pages/Home/TopRated.vue";
 import TrendingMovie from "@/pages/Home/TrendingMovie.vue";
 </script>
 
