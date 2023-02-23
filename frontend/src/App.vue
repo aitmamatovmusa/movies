@@ -1,5 +1,6 @@
 <script setup>
 import Sidebar from "@/layouts/Sidebar.vue";
+import Search from "@/layouts/Search.vue";
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import Sidebar from "@/layouts/Sidebar.vue";
       <Sidebar />
       <v-main class="main">
         <div class="wrapper">
+          <Search />
           <router-view />
         </div>
       </v-main>
