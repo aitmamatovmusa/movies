@@ -36,10 +36,9 @@ onMounted(async () => {
       <v-col
         v-for="media in mediaList"
         :key="media.poster_path"
-        cols="12"
+        cols="6"
         lg="2"
         sm="3"
-        xs="6"
       >
         <v-img
           class="media-img rounded-xl"

@@ -1,9 +1,13 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { httpGet } from "@/services/axios";
 import { getOnlyYear } from "@/helpers";
+import { useDisplay } from "vuetify";
 
+const { width } = useDisplay();
 const slides = ref([]);
+
+const showArrows = computed(() => width.value > 600);
 
 async function getTrendingSlides() {
   const { results } = await httpGet("trending/movie/week");
@@ -29,6 +33,7 @@ onMounted(async () => {
     v-if="slides.length > 0"
     class="mb-5"
     hide-delimiters
+    :show-arrows="showArrows"
     height="400"
   >
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
@@ -123,5 +128,11 @@ onMounted(async () => {
   height: auto;
   width: auto;
   border-radius: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-poster {
+    display: none;
+  }
 }
 </style>

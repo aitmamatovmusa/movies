@@ -51,10 +51,9 @@ watch(
       <v-col
         v-for="media in mediaList"
         :key="media.id"
-        cols="12"
+        cols="6"
         lg="2"
         sm="3"
-        xs="6"
         class="rounded-lg mb-5"
       >
         <v-card class="search-card ma-1">
