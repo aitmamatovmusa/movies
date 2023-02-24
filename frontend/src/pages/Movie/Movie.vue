@@ -75,6 +75,7 @@ onMounted(async () => {
   margin: -10px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top center;
   height: 100vh;
   color: white;
 }
@@ -116,5 +117,11 @@ onMounted(async () => {
 }
 .movie-genre:last-child::after {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .movie-overview {
+    max-width: 100%;
+  }
 }
 </style>
