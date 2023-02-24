@@ -1,16 +1,47 @@
 <script setup>
 import { httpGet } from "@/services/axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const mediaList = ref([]);
+const totalPages = ref(0);
+const page = ref(1);
+
+const isLoadMore = computed(() => page.value < totalPages.value);
+
+async function loadMore() {
+  page.value++;
+  const results = await getMovieList();
+  mediaList.value = [...mediaList.value, ...results];
+}
+
+async function getMovieList() {
+  const routeValue = route.query?.value;
+  const { results, total_pages } = await httpGet(
+    "search/movie",
+    `&page=${page.value}&query=${routeValue}`
+  );
+
+  totalPages.value = total_pages;
+  return results;
+}
 
 onMounted(async () => {
-  const routeValue = route.query?.value;
-  const { results } = await httpGet("search/movie", `&query=${routeValue}`);
-  mediaList.value = results;
+  const results = await getMovieList();
+  mediaList.value = [...mediaList.value, ...results];
 });
+
+watch(
+  () => route.query?.value,
+  async (value) => {
+    if (!value) return;
+    const results = await getMovieList();
+    totalPages.value = 0;
+    mediaList.value = results;
+  },
+  { deep: true }
+);
 </script>
 
 <template>
@@ -44,6 +75,9 @@ onMounted(async () => {
         </v-card>
       </v-col>
     </v-row>
+    <div v-if="isLoadMore" class="text-center">
+      <v-btn @click="loadMore" class="mt-5" variant="tonal">Load more</v-btn>
+    </div>
   </v-container>
 </template>
 <style scoped>

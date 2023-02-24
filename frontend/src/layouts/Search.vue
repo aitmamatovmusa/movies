@@ -2,8 +2,9 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-const search = ref();
 const router = useRouter();
+const urlSearchValue = router.currentRoute.value.query?.value || "";
+const search = ref(urlSearchValue);
 
 function searchValue() {
   if (search.value) {
