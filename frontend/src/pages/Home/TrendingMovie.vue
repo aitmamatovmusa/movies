@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from "vue";
 import { httpGet } from "@/services/axios";
 import { getOnlyYear } from "@/helpers";
 import { useDisplay } from "vuetify";
+import Search from "@/layouts/Search.vue";
 
 const { width } = useDisplay();
 const slides = ref([]);
@@ -27,7 +28,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h2 class="mb-3">Trending Movie</h2>
+  <div class="movie-group">
+    <h2 class="mb-3">Trending Movie</h2>
+    <Search />
+  </div>
 
   <v-carousel
     v-if="slides.length > 0"
@@ -72,11 +76,17 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.movie-group {
+  display: flex;
+}
 .slide-card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+:deep(.search-field) {
+  margin-left: auto;
 }
 .card-wrapper {
   display: flex;
@@ -131,6 +141,12 @@ onMounted(async () => {
 }
 
 @media only screen and (max-width: 600px) {
+  .movie-group {
+    flex-direction: column;
+  }
+  :deep(.search-field) {
+    margin-left: 0;
+  }
   .card-poster {
     display: none;
   }

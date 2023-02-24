@@ -32,9 +32,9 @@ function searchValue() {
 <style scoped>
 .search {
   display: flex;
+  flex: 1;
 }
 .search-field {
-  margin-left: auto;
   max-width: 250px;
 }
 </style>

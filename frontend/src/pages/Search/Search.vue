@@ -2,6 +2,7 @@
 import { httpGet } from "@/services/axios";
 import { ref, onMounted, computed, watch } from "vue";
 import { useRoute } from "vue-router";
+import Search from "@/layouts/Search.vue";
 
 const route = useRoute();
 const mediaList = ref([]);
@@ -46,39 +47,42 @@ watch(
 </script>
 
 <template>
-  <v-container fluid>
-    <v-row dense>
-      <v-col
-        v-for="media in mediaList"
-        :key="media.id"
-        cols="6"
-        lg="2"
-        sm="3"
-        class="rounded-lg mb-5"
-      >
-        <v-card class="search-card ma-1">
-          <v-img
-            :src="`https://image.tmdb.org/t/p/w300${media.poster_path}`"
-            height="300"
-            cover
-          />
+  <div>
+    <Search />
+    <v-container fluid>
+      <v-row dense>
+        <v-col
+          v-for="media in mediaList"
+          :key="media.id"
+          cols="6"
+          lg="2"
+          sm="3"
+          class="rounded-lg mb-5"
+        >
+          <v-card class="search-card ma-1">
+            <v-img
+              :src="`https://image.tmdb.org/t/p/w300${media.poster_path}`"
+              height="300"
+              cover
+            />
 
-          <div class="search-media-details">
-            <router-link
-              target="_blank"
-              class="search-media-link"
-              :to="`movie/${media.id}`"
-            >
-              {{ media.title }}
-            </router-link>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-    <div v-if="isLoadMore" class="text-center">
-      <v-btn @click="loadMore" class="mt-5" variant="tonal">Load more</v-btn>
-    </div>
-  </v-container>
+            <div class="search-media-details">
+              <router-link
+                target="_blank"
+                class="search-media-link"
+                :to="`movie/${media.id}`"
+              >
+                {{ media.title }}
+              </router-link>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+      <div v-if="isLoadMore" class="text-center">
+        <v-btn @click="loadMore" class="mt-5" variant="tonal">Load more</v-btn>
+      </div>
+    </v-container>
+  </div>
 </template>
 <style scoped>
 .search-card {
