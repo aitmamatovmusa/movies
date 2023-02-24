@@ -1,15 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/pages/Home/Home.vue";
 import Movie from "@/pages/Movie/Movie.vue";
+import Search from "@/pages/Search/Search.vue";
 
 export const paths = {
   home: "/",
   movie: "/movie/:id",
+  search: "/search",
 };
 
 const routes = [
   { path: paths.home, component: Home },
   { path: paths.movie, component: Movie },
+  { path: paths.search, component: Search },
 ];
 
 const router = createRouter({
