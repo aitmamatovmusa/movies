@@ -36,8 +36,9 @@ watch(
   () => route.query?.value,
   async (value) => {
     if (!value) return;
-    const results = await getMovieList();
+    page.value = 1;
     totalPages.value = 0;
+    const results = await getMovieList();
     mediaList.value = results;
   },
   { deep: true }

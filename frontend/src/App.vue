@@ -1,6 +1,20 @@
 <script setup>
 import Sidebar from "@/layouts/Sidebar.vue";
 import Search from "@/layouts/Search.vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+function showSearchField() {
+  const matchedName = route.matched[0]?.name;
+  switch (matchedName) {
+    case "Home":
+    case "Search":
+      return true;
+    default:
+      return false;
+  }
+}
 </script>
 
 <template>
@@ -9,7 +23,7 @@ import Search from "@/layouts/Search.vue";
       <Sidebar />
       <v-main class="main">
         <div class="wrapper">
-          <Search />
+          <Search v-if="showSearchField()" />
           <router-view />
         </div>
       </v-main>

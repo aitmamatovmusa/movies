@@ -10,9 +10,9 @@ export const paths = {
 };
 
 const routes = [
-  { path: paths.home, component: Home },
-  { path: paths.movie, component: Movie },
-  { path: paths.search, component: Search },
+  { name: "Home", path: paths.home, component: Home },
+  { name: "Movie", path: paths.movie, component: Movie },
+  { name: "Search", path: paths.search, component: Search },
 ];
 
 const router = createRouter({

@@ -30,7 +30,6 @@ onMounted(async () => {
     class="mb-5"
     hide-delimiters
     height="400"
-    show-arrows="hover"
   >
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-card
