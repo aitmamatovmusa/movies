@@ -17,7 +17,7 @@ This app allows you to search for your favourite films by film title
 - Vue Router
 - Axios
 - Font Awesome
-- TMDB API
+- [TMDB](https://www.themoviedb.org/)
 
 ### Frontend structure
 - `src`: This folder contains the source code of the project.
@@ -27,6 +27,14 @@ This app allows you to search for your favourite films by film title
 - `pages`: This folder contains the main pages of the application, such as home, movie, and search.
 - `services`: This folder contains the base axios configuration for making HTTP requests.
 - `router`: This folder contains the path and route configuration for the application.
+
+### Installation
+- Clone the repository
+- Navigate to the project directory
+- Run `npm install` to install dependencies
+- Create a `.env` file and add your TMDB API key: `VITE_API_KEY=YOUR_API_KEY`
+- Run `npm run dev` to start the development server
+- Open your browser and navigate to `http://localhost:5173`
 
 ### Recommended IDE Setup
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
